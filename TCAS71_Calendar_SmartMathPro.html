@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCAS71 Calendar | SmartMathPro</title>
+<style>
+:root{--blue:#0860ee;--sky:#eaf8ff;--yellow:#fff7c9;--pink:#ff9bc4;--ink:#152b49;--muted:#6d7f95;--line:#dce8f7;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--ink);background:linear-gradient(140deg,#bfeeff 0%,#edfaff 48%,#fff7d5 100%);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:28px 22px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:24px}.brand{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border-radius:17px;background:var(--blue);display:grid;place-items:center;color:white;font-size:27px;box-shadow:0 8px 20px #0860ee33}.brand h1{font-size:clamp(22px,3vw,34px);margin:0;color:var(--blue);letter-spacing:-.7px}.brand p{margin:3px 0 0;color:#61758d;font-size:14px}.tag{background:#fff;border:1px solid #d7e6fa;padding:10px 15px;border-radius:999px;color:var(--blue);font-weight:800}
+.hero{background:var(--blue);color:white;border-radius:26px;padding:28px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 16px 36px #0860ee24;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:260px;height:260px;border:35px solid #ffffff15;border-radius:50%;right:-40px;top:-100px}.hero h2{font-size:clamp(25px,4vw,42px);margin:0 0 8px;line-height:1.18}.hero p{margin:0;color:#e4efff;max-width:600px;line-height:1.65}.hero-icon{font-size:78px;position:relative;z-index:1;filter:drop-shadow(0 7px 0 #0044c0)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.metric,.panel{background:#fff;border:1px solid #e5eef9;border-radius:20px;box-shadow:0 8px 24px #173b6810}.metric{padding:18px 20px;display:flex;align-items:center;gap:14px}.metric .ico{width:45px;height:45px;display:grid;place-items:center;border-radius:14px;font-size:22px}.metric strong{display:block;font-size:24px;line-height:1.3}.metric span{font-size:13px;color:var(--muted)}.metric:nth-child(1) .ico{background:#e8f2ff}.metric:nth-child(2) .ico{background:#ffe8f1}.metric:nth-child(3) .ico{background:#fff5c8}
+.main{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}.panel{padding:22px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.panel h3{margin:0;font-size:20px}.sub{font-size:13px;color:var(--muted);margin-top:4px}.month-nav{display:flex;align-items:center;gap:8px}.month-nav button{width:36px;height:36px;border:1px solid var(--line);background:white;border-radius:11px;color:var(--blue);font-weight:800}.month-name{font-weight:800;font-size:20px}.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.month{border:1px solid #e1eafa;background:#f4f8ff;border-radius:13px;padding:12px 8px;text-align:center;color:#35516f;transition:.15s}.month strong{display:block;font-size:15px}.month small{display:block;color:#8292a6;margin-top:4px}.month.active{background:var(--blue);color:white;border-color:var(--blue);box-shadow:0 5px 12px #0860ee2b}.month.active small{color:#dbe8ff}
+.callout{background:var(--yellow);border-radius:16px;padding:16px 18px;margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.callout small{color:#826415}.callout strong{font-size:22px;display:block}.pill{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:#eef4ff;color:#1556c0}.controls{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}.search{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;outline:none}.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #0860ee18}.filters{display:flex;flex-wrap:wrap;gap:7px}.filter{border:1px solid #e1eafa;background:#f4f8ff;color:#45617f;border-radius:999px;padding:8px 11px;font-size:12px}.filter.active{background:var(--blue);border-color:var(--blue);color:white}
+.events{display:flex;flex-direction:column;gap:10px}.event{display:flex;align-items:flex-start;gap:13px;border:1px solid #e3edf8;border-radius:15px;padding:14px}.event-icon{flex:0 0 42px;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px}.event-body{min-width:0;flex:1}.event-title{font-weight:750;line-height:1.5;margin:7px 0 4px}.event-meta{font-size:12px;color:#71849b;display:flex;gap:7px;align-items:center;flex-wrap:wrap}.event button{border:0;background:#f3f7fc;border-radius:10px;width:34px;height:34px;color:#56718e;font-size:17px}.event button.saved{background:#e3f7eb;color:#16834a}.empty{padding:30px 12px;text-align:center;color:#7a8da3;border:1px dashed var(--line);border-radius:14px}
+.legend{display:flex;gap:13px;flex-wrap:wrap;margin-top:14px;color:#71849b;font-size:12px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.note{font-size:12px;color:#71849b;line-height:1.7;margin:18px 2px 0}.footer{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px;color:#60748a;font-size:12px}.footer a{color:var(--blue);font-weight:700;text-decoration:none}
+@media(max-width:800px){.main{grid-template-columns:1fr}.hero{padding:23px}.hero-icon{font-size:58px}.metrics{gap:8px}.metric{padding:13px 10px;gap:8px}.metric .ico{width:36px;height:36px;font-size:18px}.metric strong{font-size:20px}.metric span{font-size:11px}.wrap{padding:18px 13px 30px}.panel{padding:17px}}
+@media(max-width:430px){.tag{display:none}.hero-icon{display:none}.month-grid{gap:6px}.month{padding:10px 4px}.month strong{font-size:13px}.metric{display:block}.metric .ico{margin-bottom:8px}.panel-head{align-items:flex-start}.month-name{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">✦</div><div><h1>TCAS Calendar</h1><p>ปฏิทินเตรียมสอบเข้ามหาวิทยาลัย · SmartMathPro</p></div></div>
+    <div class="tag">DEK71 · TCAS71</div>
+  </header>
+  <section class="hero">
+    <div><h2>ไม่พลาดทุกกำหนดการ<br>วางแผนสอบได้ในที่เดียว</h2><p>เช็กกำหนดการรายเดือน ตั้งแต่สมัครสอบ พิมพ์บัตรสอบ วันสอบ ไปจนถึงประกาศผล</p></div>
+    <div class="hero-icon">🗓️</div>
+  </section>
+  <section class="metrics">
+    <div class="metric"><div class="ico">📝</div><div><strong id="applyCount">—</strong><span>รายการสมัครสอบ</span></div></div>
+    <div class="metric"><div class="ico">🎓</div><div><strong id="examCount">—</strong><span>รายการวันสอบ</span></div></div>
+    <div class="metric"><div class="ico">🔖</div><div><strong id="savedCount">0</strong><span>รายการที่บันทึกไว้</span></div></div>
+  </section>
+  <div class="main">
+    <section class="panel">
+      <div class="panel-head"><div><h3>ปฏิทินรายเดือน</h3><div class="sub">เลือกเดือนเพื่อดูรายการกำหนดการ</div></div><div class="month-nav"><button id="prev" aria-label="เดือนก่อน">‹</button><button id="next" aria-label="เดือนถัดไป">›</button></div></div>
+      <div class="month-name" id="monthTitle">กรกฎาคม 2570</div>
+      <div class="sub" style="margin:5px 0 16px">ปีการศึกษา 2571 · ข้อมูลตามภาพอ้างอิง</div>
+      <div class="month-grid" id="months"></div>
+      <div class="callout"><div><small>กำหนดการในเดือนที่เลือก</small><strong id="monthCount">1 รายการ</strong></div><span class="pill">TCAS71</span></div>
+      <div class="legend"><span><i class="dot" style="background:#0860ee"></i>สมัครสอบ</span><span><i class="dot" style="background:#f24c93"></i>วันสอบ</span><span><i class="dot" style="background:#f2c94c"></i>ประกาศผล</span></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h3>กำหนดการสำคัญ</h3><div class="sub" id="listSubtitle">รายการของเดือนที่เลือก</div></div><span class="pill">ตามภาพ</span></div>
+      <div class="controls"><input id="search" class="search" placeholder="ค้นหา เช่น A-Level, Portfolio, TPAT1"><div class="filters" id="filters"></div></div>
+      <div class="events" id="events"></div>
+      <p class="note">แตะไอคอน 🔖 เพื่อบันทึกรายการที่ต้องการติดตาม การบันทึกในต้นแบบนี้เก็บไว้ระหว่างเปิดหน้าเว็บเท่านั้น</p>
+    </section>
+  </div>
+  <div class="note">หมายเหตุ: ข้อมูลนี้ถอดจากภาพกำหนดการ TCAS71 ที่อ้างอิงปฏิทิน TCAS70 เพื่อวางแผนเบื้องต้น ภาพไม่ได้ระบุวันที่รายวัน จึงแสดงเฉพาะเดือนและชื่อกิจกรรม ไม่ใช่ข้อมูล real-time ที่เชื่อมต่อกับ myTCAS</div>
+  <div class="footer"><span>SmartMathPro · TCAS Calendar prototype</span><a href="https://mytcas.com/" target="_blank" rel="noopener">ตรวจสอบประกาศจาก myTCAS ↗</a></div>
+</div>
+<script>
+const months=[
+{short:"ก.ค. 70",title:"กรกฎาคม 2570",items:[["ลงทะเบียน myTCAS และเปิดใช้งานระบบ TCASFolio","สมัครสอบ/สมัครคัดเลือก"]]},
+{short:"ส.ค. 70",title:"สิงหาคม 2570",items:[["รับสมัครรอบ 1 Portfolio","สมัครสอบ/สมัครคัดเลือก"]]},
+{short:"ก.ย. 70",title:"กันยายน 2570",items:[["สมัครสอบ TPAT1","สมัครสอบ/สมัครคัดเลือก"]]},
+{short:"ต.ค. 70",title:"ตุลาคม 2570",items:[]},
+{short:"พ.ย. 70",title:"พฤศจิกายน 2570",items:[["สมัครสอบ TGAT / TPAT2–5","สมัครสอบ/สมัครคัดเลือก"],["รับคำร้องสมัครสอบ TGAT / TPAT2–5 ล่าช้า","กำหนดการอื่น"]]},
+{short:"ธ.ค. 70",title:"ธันวาคม 2570",items:[["พิมพ์บัตรที่นั่งสอบ TGAT / TPAT2–5","เอกสารสอบ"],["พิมพ์บัตรที่นั่งสอบ TPAT1","เอกสารสอบ"]]},
+{short:"ม.ค. 71",title:"มกราคม 2571",items:[["สมัครสอบ A-Level","สมัครสอบ/สมัครคัดเลือก"],["รับคำร้องสมัครสอบ A-Level ล่าช้า","กำหนดการอื่น"],["สอบ TGAT / TPAT2–5","วันสอบ"]]},
+{short:"ก.พ. 71",title:"กุมภาพันธ์ 2571",items:[["สอบ TPAT1","วันสอบ"],["ประกาศคะแนน TGAT / TPAT2–5","ประกาศผล"],["พิมพ์บัตรที่นั่งสอบ A-Level","เอกสารสอบ"]]},
+{short:"มี.ค. 71",title:"มีนาคม 2571",items:[["สอบ A-Level","วันสอบ"],["ประกาศคะแนน TPAT1","ประกาศผล"],["ยื่นคำร้องขอตรวจสอบคะแนน TPAT1","กำหนดการอื่น"],["ประกาศผลสอบ Portfolio","ประกาศผล"],["รับสมัครรอบ 2 Quota","สมัครสอบ/สมัครคัดเลือก"],["ขอทบทวนผลคะแนนสอบ TGAT / TPAT2–5","กำหนดการอื่น"],["ประกาศเฉลยคำตอบ A-Level","ประกาศผล"],["เปิดระบบโต้แย้งเฉลยข้อสอบ A-Level","กำหนดการอื่น"]]},
+{short:"เม.ย. 71",title:"เมษายน 2571",items:[["ประกาศคะแนน A-Level","ประกาศผล"],["ขอทบทวนผลคะแนนสอบ A-Level","กำหนดการอื่น"]]},
+{short:"พ.ค. 71",title:"พฤษภาคม 2571",items:[["ประกาศผลสอบ 2 Quota","ประกาศผล"],["รับสมัครรอบ 3 Admission (รอบปกติและรอบเพิ่มเติม)","สมัครสอบ/สมัครคัดเลือก"],["ประกาศผลรอบ 3 Admission","ประกาศผล"],["รับสมัครรอบ 4 Direct Admission","สมัครสอบ/สมัครคัดเลือก"]]},
+{short:"มิ.ย. 71",title:"มิถุนายน 2571",items:[["ประกาศผลรอบ 4 Direct Admission","ประกาศผล"]]}
+];
+const types=["ทั้งหมด","สมัครสอบ/สมัครคัดเลือก","วันสอบ","ประกาศผล","เอกสารสอบ","กำหนดการอื่น"];
+let active=0,filter="ทั้งหมด",saved=new Set();
+const $=id=>document.getElementById(id);
+const icons={"สมัครสอบ/สมัครคัดเลือก":"📝","วันสอบ":"🎓","ประกาศผล":"🏆","เอกสารสอบ":"📄","กำหนดการอื่น":"📅"};
+function renderMonths(){ $("months").innerHTML=months.map((m,i)=>`<button class="month ${i===active?'active':''}" data-month="${i}"><strong>${m.short}</strong><small>${m.items.length} รายการ</small></button>`).join("");document.querySelectorAll("[data-month]").forEach(b=>b.onclick=()=>{active=+b.dataset.month;render()})}
+function renderFilters(){$("filters").innerHTML=types.map(t=>`<button class="filter ${t===filter?'active':''}" data-filter="${t}">${t}</button>`).join("");document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderFilters();renderEvents()})}
+function renderEvents(){const q=$("search").value.trim().toLowerCase();const items=months[active].items.filter(([title,type])=>(filter==="ทั้งหมด"||type===filter)&&title.toLowerCase().includes(q));$("listSubtitle").textContent=`${months[active].short} · ${items.length} รายการ`;if(!items.length){$("events").innerHTML=`<div class="empty">${months[active].items.length?'ไม่พบรายการที่ตรงกับการค้นหา':'ในภาพอ้างอิงไม่ได้ระบุกำหนดการสำหรับเดือนนี้'}</div>`;return}
+$("events").innerHTML=items.map(([title,type])=>{const id=months[active].short+"|"+title;const color=type==="วันสอบ"?"#ffe6ef":type==="ประกาศผล"?"#fff5c5":type==="สมัครสอบ/สมัครคัดเลือก"?"#e5f1ff":"#f0f5ff";return `<article class="event"><div class="event-icon" style="background:${color}">${icons[type]||"📅"}</div><div class="event-body"><span class="pill">${type}</span><div class="event-title">${title}</div><div class="event-meta">📆 ${months[active].short} <span>·</span> วันที่แน่นอนให้ตรวจประกาศทางการ</div></div><button class="${saved.has(id)?'saved':''}" data-save="${encodeURIComponent(id)}" title="บันทึก">${saved.has(id)?"✓":"🔖"}</button></article>`}).join("");document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const id=decodeURIComponent(b.dataset.save);saved.has(id)?saved.delete(id):saved.add(id);$("savedCount").textContent=saved.size;renderEvents()})}
+function render(){$("monthTitle").textContent=months[active].title;$("monthCount").textContent=months[active].items.length+" รายการ";$("prev").disabled=active===0;$("next").disabled=active===months.length-1;renderMonths();renderFilters();renderEvents()}
+$("prev").onclick=()=>{active=Math.max(0,active-1);render()};$("next").onclick=()=>{active=Math.min(months.length-1,active+1);render()};$("search").addEventListener("input",renderEvents);
+$("applyCount").textContent=months.reduce((n,m)=>n+m.items.filter(x=>x[1]==="สมัครสอบ/สมัครคัดเลือก").length,0);$("examCount").textContent=months.reduce((n,m)=>n+m.items.filter(x=>x[1]==="วันสอบ").length,0);render();
+</script>
+</body></html>
